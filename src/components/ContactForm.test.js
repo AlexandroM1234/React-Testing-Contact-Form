@@ -4,6 +4,15 @@ import { render, fireEvent } from "@testing-library/react";
 
 import ContactForm from "./ContactForm";
 
-test("Contact form renders correctly", () => {
-  render(<ContactForm />);
+// Name input only has a max-character length of 3
+// fixed
+
+test("minimum first name length", () => {
+  const { getByTitle } = render(<ContactForm />);
+
+  const firstNameInput = getByTitle("firstName");
+
+  fireEvent.change(firstNameInput, {
+    target: { name: "firstName", value: "Alex" }
+  });
 });
